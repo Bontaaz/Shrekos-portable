@@ -1,6 +1,11 @@
 import { Grossefonction as api } from "./api.js";
-let popo = api()
+const tableau = document.getElementById('tableau')
+    api().then((res) => {
+    console.log(res)
+    for (const element of res) {
+        console.log(element)
+        tableau.innerHTML += element.name
+    }
+})
+//console.log(popo)
 
-const tableau = document.getElementById('plateau')
-
-tableau.innerHTML(popo)
