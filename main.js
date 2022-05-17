@@ -9,10 +9,10 @@ let data
     
 
     data.forEach(element => {
-        let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`]
+        let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`]
         let row = document.createElement('tr')
         console.log(data)
-        for (let index = 0; index < 4; index++) {
+        for (let index = 0; index < tabdata.length; index++) {
             let ele = document.createElement('td')
             let text3 = document.createTextNode(`${tabdata[index]}`)
             ele.appendChild(text3)
