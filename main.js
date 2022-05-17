@@ -11,7 +11,7 @@ api().then((res) => {
         console.log(tabdata[0])
         for (let index = 0; index < 4; index++) {
             let ele = document.createElement('td')
-            let text3 = document.createTextNode(`${element.tabdata[index]}`)
+            let text3 = document.createTextNode(`${elementabdata[index]}`)
             ele.appendChild(text3)
             row.appendChild(ele)
         }
