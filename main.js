@@ -1,7 +1,7 @@
 import { Grossefonction as api } from "./api.js";
 const tableau = document.getElementById('tbody')
 let data 
-let tabdata = [`name`,`appearance.gender`,`appearance.race`,`appearance.weight[0]`]
+
    
     api().then((res) => {
     
@@ -9,11 +9,12 @@ let tabdata = [`name`,`appearance.gender`,`appearance.race`,`appearance.weight[0
     
 
     data.forEach(element => {
+        let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`]
         let row = document.createElement('tr')
-        console.log(tabdata[0])
+        console.log(data)
         for (let index = 0; index < 4; index++) {
             let ele = document.createElement('td')
-            let text3 = document.createTextNode(`${element.tabdata[index]}`)
+            let text3 = document.createTextNode(`${tabdata[index]}`)
             ele.appendChild(text3)
             row.appendChild(ele)
         }
