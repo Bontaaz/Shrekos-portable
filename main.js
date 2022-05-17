@@ -1,11 +1,25 @@
 import { Grossefonction as api } from "./api.js";
-const tableau = document.getElementById('tableau')
+const tableau = document.getElementById('tbody')
+let data 
+let tabdata = [`name`,`appearance.gender`,`appearance.race`,`appearance.weight[0]`]
+   
     api().then((res) => {
-    console.log(res)
-    for (const element of res) {
-        console.log(element)
-        tableau.innerHTML += element.name
-    }
-})
-//console.log(popo)
+    
+    data = res
+    
 
+    data.forEach(element => {
+        let row = document.createElement('tr')
+        console.log(tabdata[0])
+        for (let index = 0; index < 4; index++) {
+            let ele = document.createElement('td')
+            let text3 = document.createTextNode(`${element.tabdata[index]}`)
+            ele.appendChild(text3)
+            row.appendChild(ele)
+        }
+        tableau.appendChild(row)
+    });
+
+
+
+})
