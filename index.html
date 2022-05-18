@@ -2,34 +2,55 @@
 <head>
     <title>Shrek's plan to destroy heros</title>
     <style>
-        #footer{
-            background-color:cyan;
-            position:fixed;
-            bottom: 0; 
-            left: 0;
-            right: 0;
+        body {
+            padding-top: 30px;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            background-color: darkolivegreen;
         }
-        #suivant{
-           font-style: bold;
+
+        input {
+            position: fixed;
+            top:5px;
+            left:5px;
+            border:4px solid black;
+        }
+
+        td{
+            background-color: lightgrey;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border: 2px solid black;;
+        }
+        th{
+            background-color: grey;
+            padding: 10px;
+            font-size: 24px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border: 2px solid black;
+
+        }
+        footer {
+            background-color: beige;
+            bottom: 0;
+            width: 100%;
+            position: fixed;
         }
     </style>
 </head>
 <body>
-    <table>
+    <input type="text" id="myInput" placeholder="Search..">
+    <table id="myTable">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Full Name</th>
-                <th>Gender</th>
-                <th>Race</th>
-                <th>Weight</th>
-                <th>Height</th>
-                <th>PowerStats</th>
+                <th>name</th>
+                <th>gender</th>
+                <th>race</th>
+                <th>weight</th>
+                <th>height</th>
                 <th>Place of Birth</th>
-                <th>Alignement</th>
+                <th>Alignment</th>
+                <th>Powerstats</th>
             </tr>
         </thead>
         <tbody id="tbody"> 
@@ -41,3 +62,5 @@
     </footer>
 </body>
 
+<footer>
+</footer>
