@@ -31,12 +31,18 @@
 
         }
         footer {
+            display :flex;
+            align-items: center;
+            justify-content: center;
             background-color: beige;
             bottom: 0;
             width: 100%;
             position: fixed;
         }
+        
     </style>
+    <script type="text/javascript" src="main.js">
+    </script>
 </head>
 <body>
     <input type="text" id="myInput" placeholder="Search..">
@@ -58,7 +64,17 @@
     </table>
     <script src="main.js" type="module"></script>
     <footer id="footer">
-        <div id="suivant">SUIVANT</div>
+        <button id="prec">PRECEDENT</button>
+        <button id="suivant">SUIVANT</button>
+        <form name="opt" id="option">
+            <select name="liste" onchange="datX()" id="listee">
+                <option value="1">10</option>
+                <option value="2" selected>20</option>
+                <option value="3">50</option>
+                <option value="4">100</option>
+                <option value="5">All</option>
+            </select>
+        </form>
     </footer>
 </body>
 

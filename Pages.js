@@ -1,114 +1,5 @@
-const tableau = document.getElementById('tbody')
-const suivant = document.getElementById('suivant')
-const liste = document.getElementsByName('Liste')
-const prec = document.getElementById('prec')
-
-
-
-let Pages = 0
-let actualPage = 'data20'
-let dataAll
-let data10 = [[]]
-let data20 = [[]]
-let data50 = [[]]
-let data100 = [[]]
-
-function grossefonction(){
-    return fetch('https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json')
-    .then((response) => response.json())
-    .then(data => data)
-}
-
-
-grossefonction().then((res) => {
-    dataAll = res
-    
-     dataAll.forEach((element,index) => {
-
-        if (index%10 == 0) {
-            data10.push([])  
-        }
-        if (index%20 == 0) {
-            data20.push([])  
-        }
-        if (index%50 == 0) {
-            data50.push([])  
-        }
-        if (index%100 == 0) {
-            data100.push([])  
-        }
-        
-        data10[Math.floor(index/10)].push(element)
-        data20[Math.floor(index/20)].push(element)
-        data50[Math.floor(index/50)].push(element)
-        data100[Math.floor(index/100)].push(element)
-        
-        
-    }); 
-    
-    dat20()
-    
-})
-
-
-const input = document.getElementById('myInput')
-input.oninput = function(){
-        // Declare variables
-        let input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        console.log('prout')
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-}
-prec.onclick = function (){
-nextprec(-1)
-}
 suivant.onclick = function (){
-    nextprec(1)
-}
-
-    function nextprec(x){
-    const listee = document.getElementById('listee')
-    let val = listee.options[listee.selectedIndex].value
-    
-        if (val == 1) {
-            actualPage = 'data10'
-            if (data10[Pages+x] !== undefined) {
-                Pages += x
-            }
-        } else if (val == 2) {
-            actualPage = 'data20'
-            if (data20[Pages+x] !== undefined) {
-                Pages += x
-            }
-          
-        } else if (val == 3) {
-            actualPage = 'data50'
-            if (data50[Pages+x] !== undefined) {
-                Pages += x
-            }
-            
-        } else if (val == 4) {
-            actualPage = 'data100'
-            if (data100[Pages+x] !== undefined) {
-                Pages += x
-            }
-        } else if (val == 5) {
-            actualPage = 'dataAll'
-        }    
+    Pages++
     tableau.replaceChildren()
     if (actualPage == 'data10') {
         data10[Pages].forEach(element => {
@@ -167,7 +58,7 @@ suivant.onclick = function (){
         });
     }
     if (actualPage == 'dataAll') {
-        dataAll.forEach(element => {
+        dataAll[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
             for (let index = 0; index < 8; index++) {
@@ -181,13 +72,14 @@ suivant.onclick = function (){
         });
     }
     
+    
     }
 
     function dat10(){
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
+        console.log('SIUUUUUUUUUUU')
         actualPage = 'data10'
         Pages = 0
+        tableau.replaceChildren()
         data10[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
@@ -198,14 +90,13 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
     function dat20(){
-       
+        actualPage = 'data20'
         Pages = 0
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
+        tableau.replaceChildren()
         data20[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
@@ -216,14 +107,13 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
     function dat50(){
-       
+        actualPage = 'data50'
         Pages = 0
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
+        tableau.replaceChildren()
         data50[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
@@ -234,14 +124,13 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
     function dat100(){
-        
+        actualPage = 'data100'
         Pages = 0
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
+        tableau.replaceChildren()
         data100[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
@@ -252,15 +141,14 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
     function datAll(){
         Pages = 0
-        
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
-        dataAll.forEach(element => {
+        actualPage = 'dataAll'
+        tableau.replaceChildren()
+        dataAll[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
             for (let index = 0; index < 8; index++) {
@@ -270,27 +158,6 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
-
-function datX(){
-    const listee = document.getElementById('listee')
-    val = listee.options[listee.selectedIndex].value
-    if (val == 1) {
-        actualPage = 'data10'
-        dat10()
-    } else if (val == 2) {
-        actualPage = 'data20'
-        dat20()
-    } else if (val == 3) {
-        actualPage = 'data50'
-        dat50()
-    } else if (val == 4) {
-        actualPage = 'data100'
-        dat100()
-    } else if (val == 5) {
-        actualPage = 'dataAll'
-        datAll()
-    }
-}
