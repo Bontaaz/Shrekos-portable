@@ -2,13 +2,18 @@
 <head>
     <title>Shrek's plan to destroy heros</title>
     <style>
-        #tableau {
-            border: 4px solid pink;
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            grid-template-rows: repeat(8, 1fr);
-            grid-column-gap: 0px;
-            grid-row-gap: 2px;
+        #footer{
+            background-color:cyan;
+            position:fixed;
+            bottom: 0; 
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #suivant{
+           font-style: bold;
         }
     </style>
 </head>
@@ -16,18 +21,23 @@
     <table>
         <thead>
             <tr>
-                <th>name</th>
-                <th>gender</th>
-                <th>race</th>
-                <th>weight</th>
-                <th>height</th>
-                <th>name</th>
-                <th>name</th>
-                <th>name</th>
+                <th>Name</th>
+                <th>Full Name</th>
+                <th>Gender</th>
+                <th>Race</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>PowerStats</th>
+                <th>Place of Birth</th>
+                <th>Alignement</th>
             </tr>
         </thead>
         <tbody id="tbody"> 
         </tbody>
     </table>
     <script src="main.js" type="module"></script>
+    <footer id="footer">
+        <div id="suivant">SUIVANT</div>
+    </footer>
 </body>
+
