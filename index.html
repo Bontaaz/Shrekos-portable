@@ -2,15 +2,55 @@
 <head>
     <title>Shrek's plan to destroy heros</title>
     <style>
-        *{
-            border: 1px solid black;
+        body {
+            padding-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: darkolivegreen;
+        }
+
+        input {
+            position: fixed;
+            top:5px;
+            left:5px;
+        }
+
+        td{
+            background-color: lightgrey;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+            border: 2px solid black;;
+        }
+        th{
+            background-color: grey;
+            padding: 10px;
+            font-size: 24px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border: 2px solid black;
+
+        }
+        footer {
+            background-color: beige;
+            bottom: 0;
+            width: 100%;
+            position: fixed;
         }
     </style>
 </head>
 <body>
-    <table>
+    <input type="text" id="myInput" placeholder="Search..">
+    <table id="myTable">
         <thead>
             <tr>
+                <th>name</th>
+                <th>gender</th>
+                <th>race</th>
+                <th>weight</th>
+                <th>height</th>
+                <th>Place of Birth</th>
+                <th>Alignment</th>
+                <th>Powerstats</th>
             </tr>
         </thead>
         <tbody id="tbody"> 
@@ -18,3 +58,6 @@
     </table>
     <script src="main.js" type="module"></script>
 </body>
+
+<footer>
+</footer>
