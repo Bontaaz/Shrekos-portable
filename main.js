@@ -1,3 +1,5 @@
+import {oncli  } from "./sort.js";
+
 const tableau = document.getElementById('tbody')
 const suivant = document.getElementById('suivant')
 const liste = document.getElementsByName('Liste')
@@ -5,7 +7,7 @@ const prec = document.getElementById('prec')
 
 console.log(tableau)
 
-
+oncli()
 
 let v = {}
 v.Pages = 0
