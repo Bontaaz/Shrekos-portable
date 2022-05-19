@@ -3,12 +3,15 @@ const suivant = document.getElementById('suivant')
 const liste = document.getElementsByName('Liste')
 const prec = document.getElementById('prec')
 
+console.log(tableau)
+
 
 
 let v = {}
 v.Pages = 0
 let actualPage = 'data20'
 let dataAll
+let data
 let data10 = [[]]
 let data20 = [[]]
 let data50 = [[]]
@@ -65,7 +68,7 @@ grossefonction().then((res) => {
     
 })
 
-console.log(data10)
+
 
 const input = document.getElementById('myInput')
 input.oninput = function(){
@@ -75,7 +78,7 @@ input.oninput = function(){
         filter = input.value.toUpperCase();
         table = document.getElementById("myTable");
         tr = table.getElementsByTagName("tr");
-        console.log('prout')
+       
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
           td = tr[i].getElementsByTagName("td")[0];
@@ -100,30 +103,30 @@ suivant.onclick = function (){
     const listee = document.getElementById('listee')
     let val = listee.options[listee.selectedIndex].value
     console.log(v.Pages)
-        if (val == 1) {
-            actualPage = 'data10'
+        if (val == "10") {
+          //  actualPage = 'data10'
             if (data10[v.Pages+x] !== undefined) {
                 v.Pages += x
             }
-        } else if (val == 2) {
-            actualPage = 'data20'
+        } else if (val == "20") {
+         //   actualPage = 'data20'
             if (data20[v.Pages+x] !== undefined) {
                 v.Pages += x
             }
           
-        } else if (val == 3) {
-            actualPage = 'data50'
+        } else if (val == "50") {
+         //   actualPage = 'data50'
             if (data50[v.Pages+x] !== undefined) {
                 v.Pages += x
             }
             
-        } else if (val == 4) {
-            actualPage = 'data100'
+        } else if (val == "100") {
+         //   actualPage = 'data100'
             if (data100[v.Pages+x] !== undefined) {
                 v.Pages += x
             }
-        } else if (val == 5) {
-            actualPage = 'dataAll'
+        } else if (val == "All") {
+          //  actualPage = 'dataAll'
         }    
    
     if (actualPage == 'data10') {
@@ -145,8 +148,8 @@ suivant.onclick = function (){
     }
 
     function dat10(Pages){
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
+        console.log(tableau)
+        tableau.innerHTML = ""
         actualPage = 'data10'
         
         data10[Pages].forEach(element => {
@@ -159,13 +162,14 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
     function dat20(Pages){
-       console.log(data20)
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
+      
+        
+       // tbo = document.getElementById('tbody')
+        tableau.innerHTML = ""
         data20[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
@@ -176,14 +180,13 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
     function dat50(Pages){
        
         
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
+        tableau.innerHTML = ""
         data50[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
@@ -194,14 +197,13 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
     function dat100(Pages){
         
        
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
+        tableau.innerHTML = ""
         data100[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
@@ -212,14 +214,13 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
     function datAll(){
         
         
-        tbo = document.getElementById('tbody')
-        tbo.replaceChildren()
+        tableau.innerHTML = ""
         dataAll.forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
@@ -230,32 +231,25 @@ suivant.onclick = function (){
                 row.appendChild(ele)
             }
             
-            tbo.appendChild(row)
+            tableau.appendChild(row)
         });
     }
 
 function datX(){
     const listee = document.getElementById('listee')
     val = listee.options[listee.selectedIndex].value
-    if (val == 1) {
-        v.Pages = 0
-        actualPage = 'data10'
+    v.Pages = 0
+    actualPage = 'data'+val;
+    if (val == "10") {
         dat10(0)
-    } else if (val == 2) {
-        v.Pages = 0
-        actualPage = 'data20'
+    } else if (val == "20") {
         dat20(0)
-    } else if (val == 3) {
-        v.Pages = 0
-        actualPage = 'data50'
+    } else if (val == "50") {
         dat50(0)
-    } else if (val == 4) {
-        v.Pages = 0
-        actualPage = 'data100'
+    } else if (val == "100") {
         dat100(0)
-    } else if (val == 5) {
-        v.Pages = 0
-        actualPage = 'dataAll'
+    } else if (val == "All") {
         datAll()
     }
+    console.log(v.Pages)
 }
