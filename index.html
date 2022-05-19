@@ -40,6 +40,17 @@
             border: 2px solid black;;
         }
         th{
+            
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
             background-color: grey;
             padding: 10px;
             font-size: 24px;
@@ -78,7 +89,7 @@
     <table id="myTable">
         <thead>
             <tr>
-                <th id="name">name</th>
+                <th id="name" value="ok">name</th>
                 <th id="gender">gender</th>
                 <th id="race">race</th>
                 <th id="weight">weight</th>
@@ -108,7 +119,7 @@
 
 <footer>
 </footer>
-<script type="module" src="main.js">
+<script type="text/javascript" src="main.js">
     
 </script>
 </html>

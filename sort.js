@@ -9,7 +9,7 @@ const powerstats = document.getElementById('Powerstats')
 
 export function oncli(){
 name.onclick = function (){
-console.log('SIUUUUUUU')
+
 }
 race.onclick = function (){
     
