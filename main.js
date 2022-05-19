@@ -13,6 +13,7 @@ v.actualPage = 20
 let dataAll
 let data
 
+
 function grossefonction(){
     return fetch('https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json')
     .then((response) => response.json())
@@ -41,6 +42,8 @@ select.addEventListener('change',()=>{
     usrChoice = select.value
 
 })
+
+
 input.oninput = function(){
         // Declare variables
         let input, filter, table, tr, td, i, txtValue;
@@ -94,21 +97,30 @@ nextprec(1)
         data = dataAll.slice(v.actualPage*v.Pages,v.actualPage*v.Pages+v.actualPage)
         console.log(data)
         data.forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
+            let data = [`Intelligence = ${element.powerstats.intelligence}`,`Speed = ${element.powerstats.speed}`,`Strength = ${element.powerstats.strength}`,`Durability = ${element.powerstats.durability}`,`Power = ${element.powerstats.power}`,`Combat = ${element.powerstats.combat}`,];
+            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,'Power Stats :']
             let row = document.createElement('tr')
             for (let index = 0; index < 8; index++) {
                 let ele = document.createElement('td')
                 let text3 = document.createTextNode(`${tabdata[index]}`)
                 if (index == 0){
-                    console.log('cacaaaa')
                     ele.setAttribute('id','image')
                     let img = document.createElement('img')
                     img.src = `${element.images.sm}`
                     ele.appendChild(img)
-                }else{
-                    ele.setAttribute('id','content')
                 }
                 ele.appendChild(text3)
+                if (index == 7){
+                    let powerlist = document.createElement('ul')
+                    powerlist.setAttribute('id','myList')
+                    
+                    data.forEach((item)=>{
+                        let li = document.createElement("li");
+                        li.innerText = item;
+                        powerlist.appendChild(li);
+                    })
+                    ele.appendChild(powerlist)
+                }
                 row.appendChild(ele)
             }
             
@@ -119,7 +131,8 @@ nextprec(1)
         }
         console.log(data)
     }
-   
+    
+
 function datX(){
     const listee = document.getElementById('listee')
     val = listee.options[listee.selectedIndex].value
