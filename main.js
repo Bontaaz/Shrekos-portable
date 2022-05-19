@@ -9,13 +9,9 @@ console.log(tableau)
 
 let v = {}
 v.Pages = 0
-let actualPage = 'data20'
+v.actualPage = 20
 let dataAll
 let data
-let data10 = [[]]
-let data20 = [[]]
-let data50 = [[]]
-let data100 = [[]]
 
 function grossefonction(){
     return fetch('https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json')
@@ -26,58 +22,17 @@ function grossefonction(){
 
 grossefonction().then((res) => {
     dataAll = res
-    
-     dataAll.forEach((element,index) => {
-
-        if (index%10 == 0) {
-            data10.push([])  
-        }
-        if (index%20 == 0) {
-            data20.push([])  
-        }
-        if (index%50 == 0) {
-            data50.push([])  
-        }
-        if (index%100 == 0) {
-            data100.push([])  
-        }
-        
-        data10[Math.floor(index/10)].push(element)
-        data20[Math.floor(index/20)].push(element)
-        data50[Math.floor(index/50)].push(element)
-        data100[Math.floor(index/100)].push(element)
-        
-        
+    console.log(dataAll)
+    dataAll.forEach((element,index) => {        
         
     }); 
-    
-    if (data10[data10.length-1] == 0) {
-        data10.pop()
-    }
-    if (data20[data10.length-1] == 0) {
-        data20.pop()
-    }
-    if (data50[data10.length-1] == 0) {
-        data50.pop()
-    }
-    if (data100[data10.length-1] == 0) {
-        data100.pop()
-    }
-    
-    dat20(0)
+    dat()
     
 })
 
 
-
+console.log(dataAll)
 const input = document.getElementById('myInput')
-const select = document.getElementById('select')
-let usrChoice = select.value
-select.addEventListener('change',()=>{
-    console.log('bitas')
-    usrChoice = select.value
-    
-})
 input.oninput = function(){
         // Declare variables
         let input, filter, table, tr, td, i, txtValue;
@@ -88,7 +43,7 @@ input.oninput = function(){
        
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[usrChoice];
+          td = tr[i].getElementsByTagName("td")[0];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -103,136 +58,34 @@ prec.onclick = function (){
 nextprec(-1)
 }
 suivant.onclick = function (){
-    nextprec(1)
+nextprec(1)
 }
 
     function nextprec(x){
     const listee = document.getElementById('listee')
     let val = listee.options[listee.selectedIndex].value
-    console.log(v.Pages)
-        if (val == "10") {
-          //  actualPage = 'data10'
-            if (data10[v.Pages+x] !== undefined) {
-                v.Pages += x
-            }
-        } else if (val == "20") {
-         //   actualPage = 'data20'
-            if (data20[v.Pages+x] !== undefined) {
-                v.Pages += x
-            }
-          
-        } else if (val == "50") {
-         //   actualPage = 'data50'
-            if (data50[v.Pages+x] !== undefined) {
-                v.Pages += x
-            }
-            
-        } else if (val == "100") {
-         //   actualPage = 'data100'
-            if (data100[v.Pages+x] !== undefined) {
-                v.Pages += x
-            }
-        } else if (val == "All") {
-          //  actualPage = 'dataAll'
-        }    
-   
-    if (actualPage == 'data10') {
-        dat10(v.Pages)
+    
+    if (x === 1) {
+        if (v.Pages*v.actualPage < 563 && v.Pages >= 0) {
+            v.Pages += x
+        } 
+    }else if (x === -1) {
+        if (v.Pages*v.actualPage < 563 && v.Pages > 0) {
+            v.Pages += x
+        }
     }
-    if (actualPage == 'data20') {
-        dat20(v.Pages)
-    }
-    if (actualPage == 'data50') {
-        dat50(v.Pages)
-    }
-    if (actualPage == 'data100') {
-        dat100(v.Pages)
-    }
-    if (actualPage == 'dataAll') {
-        datAll(v.Pages)
-    }
+    dat()
     
     }
 
-    function dat10(Pages){
-        console.log(tableau)
+    function dat(){
         tableau.innerHTML = ""
-        actualPage = 'data10'
         
-        data10[Pages].forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
-            let row = document.createElement('tr')
-            for (let index = 0; index < 8; index++) {
-                let ele = document.createElement('td')
-                let text3 = document.createTextNode(`${tabdata[index]}`)
-                if (index == 0){
-                    console.log('cacaaaa')
-                    let img = document.createElement('img')
-                    img.src = `${element.images.xs}`
-                    ele.appendChild(img)
-                }
-                ele.appendChild(text3)
-                row.appendChild(ele)
-            }
-            
-            tableau.appendChild(row)
-        });
-    }
-    function dat20(Pages){
-      
+        console.log((v.actualPage*v.Pages)+v.actualPage)
         
-       // tbo = document.getElementById('tbody')
-        tableau.innerHTML = ""
-        data20[Pages].forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
-            let row = document.createElement('tr')
-            for (let index = 0; index < 8; index++) {
-                let ele = document.createElement('td')
-                let text3 = document.createTextNode(`${tabdata[index]}`)
-                if (index == 0){
-                    console.log('cacaaaa')
-                    ele.setAttribute('id','image')
-                    let img = document.createElement('img')
-                    img.src = `${element.images.sm}`
-                    ele.appendChild(img)
-                }else{
-                    ele.setAttribute('id','content')
-                }
-                ele.appendChild(text3)
-                row.appendChild(ele)
-            }
-            
-            tableau.appendChild(row)
-        });
-    }
-    function dat50(Pages){
-       
-        
-        tableau.innerHTML = ""
-        data50[Pages].forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
-            let row = document.createElement('tr')
-            for (let index = 0; index < 8; index++) {
-                let ele = document.createElement('td')
-                let text3 = document.createTextNode(`${tabdata[index]}`)
-                if (index == 0){
-                    console.log('cacaaaa')
-                    let img = document.createElement('img')
-                    img.src = `${element.images.xs}`
-                    ele.appendChild(img)
-                }
-                ele.appendChild(text3)
-                row.appendChild(ele)
-            }
-            
-            tableau.appendChild(row)
-        });
-    }
-    function dat100(Pages){
-        
-       
-        tableau.innerHTML = ""
-        data100[Pages].forEach(element => {
+        data = dataAll.slice(v.actualPage*v.Pages,v.actualPage*v.Pages+v.actualPage)
+        console.log(data)
+        data.forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
             for (let index = 0; index < 8; index++) {
@@ -250,46 +103,17 @@ suivant.onclick = function (){
             
             tableau.appendChild(row)
         });
+        for (let index = data.length; index >0; index--) {
+            data.pop() 
+        }
+        console.log(data)
     }
-    function datAll(){
-        
-        
-        tableau.innerHTML = ""
-        dataAll.forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
-            let row = document.createElement('tr')
-            for (let index = 0; index < 8; index++) {
-                let ele = document.createElement('td')
-                let text3 = document.createTextNode(`${tabdata[index]}`)
-                if (index == 0){
-                    console.log('cacaaaa')
-                    let img = document.createElement('img')
-                    img.src = `${element.images.lg}`
-                    ele.appendChild(img)
-                }
-                ele.appendChild(text3)
-                row.appendChild(ele)
-            }
-            
-            tableau.appendChild(row)
-        });
-    }
-
+   
 function datX(){
     const listee = document.getElementById('listee')
     val = listee.options[listee.selectedIndex].value
+    v.actualPage = parseInt(val)
     v.Pages = 0
-    actualPage = 'data'+val;
-    if (val == "10") {
-        dat10(0)
-    } else if (val == "20") {
-        dat20(0)
-    } else if (val == "50") {
-        dat50(0)
-    } else if (val == "100") {
-        dat100(0)
-    } else if (val == "All") {
-        datAll()
-    }
-    console.log(v.Pages)
+    console.log(v)
+    dat()
 }
