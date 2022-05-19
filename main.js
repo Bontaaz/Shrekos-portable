@@ -43,9 +43,6 @@ grossefonction().then((res) => {
     
 })
 
-
-url()
-
 const input = document.getElementById('myInput')
 const select = document.getElementById('select')
 let usrChoice = select.value
