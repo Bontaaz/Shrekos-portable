@@ -31,8 +31,16 @@ grossefonction().then((res) => {
 })
 
 
+
 console.log(dataAll)
 const input = document.getElementById('myInput')
+const select = document.getElementById('select')
+let usrChoice = select.value
+select.addEventListener('change',()=>{
+    console.log('bitas')
+    usrChoice = select.value
+
+})
 input.oninput = function(){
         // Declare variables
         let input, filter, table, tr, td, i, txtValue;
@@ -43,7 +51,7 @@ input.oninput = function(){
        
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-          td = tr[i].getElementsByTagName("td")[0];
+            td = tr[i].getElementsByTagName("td")[usrChoice];
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -93,9 +101,12 @@ nextprec(1)
                 let text3 = document.createTextNode(`${tabdata[index]}`)
                 if (index == 0){
                     console.log('cacaaaa')
+                    ele.setAttribute('id','image')
                     let img = document.createElement('img')
-                    img.src = `${element.images.lg}`
+                    img.src = `${element.images.sm}`
                     ele.appendChild(img)
+                }else{
+                    ele.setAttribute('id','content')
                 }
                 ele.appendChild(text3)
                 row.appendChild(ele)
