@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="shortcut icon" href="#">
     <title>Shrek's plan to destroy heros</title>
     <style>
         body {
-            padding-top: 30px;
+            padding: 30px;
+
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: darkolivegreen;
         }
 
-        input {
+        #pipi {
+            padding: 3px;
             position: fixed;
             top:5px;
             left:5px;
             border:4px solid black;
         }
 
+        #image{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3px;
+        }
+        #content{
+            padding:10px;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: bold;
+
+        }
         td{
             background-color: lightgrey;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -44,7 +60,21 @@
     </style>
   </head>
 <body>
-    <input type="text" id="myInput" placeholder="Search..">
+    <div id="pipi">
+        <input type="text" id="myInput" placeholder="Search..">
+        <label for="search-select">Search by :</label>
+        <select id="select">
+            <option value="0">Name</option>
+            <option value="1">Gender</option>
+            <option value="2">Race</option>
+            <option value="3">Weight</option>
+            <option value="4">Height</option>
+            <option value="5">Place of Birth</option>
+            <option value="6">Alignment</option>
+            <option value="7">Powerstats</option>
+            
+        </select>
+    </div>
     <table id="myTable">
         <thead>
             <tr>
