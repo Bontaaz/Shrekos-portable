@@ -5,7 +5,8 @@ const prec = document.getElementById('prec')
 
 
 
-let Pages = 0
+let v = {}
+v.Pages = 0
 let actualPage = 'data20'
 let dataAll
 let data10 = [[]]
@@ -44,12 +45,27 @@ grossefonction().then((res) => {
         data100[Math.floor(index/100)].push(element)
         
         
+        
     }); 
     
-    dat20()
+    if (data10[data10.length-1] == 0) {
+        data10.pop()
+    }
+    if (data20[data10.length-1] == 0) {
+        data20.pop()
+    }
+    if (data50[data10.length-1] == 0) {
+        data50.pop()
+    }
+    if (data100[data10.length-1] == 0) {
+        data100.pop()
+    }
+    
+    dat20(0)
     
 })
 
+console.log(data10)
 
 const input = document.getElementById('myInput')
 input.oninput = function(){
@@ -83,111 +99,56 @@ suivant.onclick = function (){
     function nextprec(x){
     const listee = document.getElementById('listee')
     let val = listee.options[listee.selectedIndex].value
-    
+    console.log(v.Pages)
         if (val == 1) {
             actualPage = 'data10'
-            if (data10[Pages+x] !== undefined) {
-                Pages += x
+            if (data10[v.Pages+x] !== undefined) {
+                v.Pages += x
             }
         } else if (val == 2) {
             actualPage = 'data20'
-            if (data20[Pages+x] !== undefined) {
-                Pages += x
+            if (data20[v.Pages+x] !== undefined) {
+                v.Pages += x
             }
           
         } else if (val == 3) {
             actualPage = 'data50'
-            if (data50[Pages+x] !== undefined) {
-                Pages += x
+            if (data50[v.Pages+x] !== undefined) {
+                v.Pages += x
             }
             
         } else if (val == 4) {
             actualPage = 'data100'
-            if (data100[Pages+x] !== undefined) {
-                Pages += x
+            if (data100[v.Pages+x] !== undefined) {
+                v.Pages += x
             }
         } else if (val == 5) {
             actualPage = 'dataAll'
         }    
-    tableau.replaceChildren()
+   
     if (actualPage == 'data10') {
-        data10[Pages].forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
-            let row = document.createElement('tr')
-            for (let index = 0; index < 8; index++) {
-                let ele = document.createElement('td')
-                let text3 = document.createTextNode(`${tabdata[index]}`)
-                ele.appendChild(text3)
-                row.appendChild(ele)
-            }
-            
-            tableau.appendChild(row)
-        });
+        dat10(v.Pages)
     }
     if (actualPage == 'data20') {
-        data20[Pages].forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
-            let row = document.createElement('tr')
-            for (let index = 0; index < 8; index++) {
-                let ele = document.createElement('td')
-                let text3 = document.createTextNode(`${tabdata[index]}`)
-                ele.appendChild(text3)
-                row.appendChild(ele)
-            }
-            
-            tableau.appendChild(row)
-        });
+        dat20(v.Pages)
     }
     if (actualPage == 'data50') {
-        data50[Pages].forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
-            let row = document.createElement('tr')
-            for (let index = 0; index < 8; index++) {
-                let ele = document.createElement('td')
-                let text3 = document.createTextNode(`${tabdata[index]}`)
-                ele.appendChild(text3)
-                row.appendChild(ele)
-            }
-            
-            tableau.appendChild(row)
-        });
+        dat50(v.Pages)
     }
     if (actualPage == 'data100') {
-        data100[Pages].forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
-            let row = document.createElement('tr')
-            for (let index = 0; index < 8; index++) {
-                let ele = document.createElement('td')
-                let text3 = document.createTextNode(`${tabdata[index]}`)
-                ele.appendChild(text3)
-                row.appendChild(ele)
-            }
-            
-            tableau.appendChild(row)
-        });
+        dat100(v.Pages)
     }
     if (actualPage == 'dataAll') {
-        dataAll.forEach(element => {
-            let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
-            let row = document.createElement('tr')
-            for (let index = 0; index < 8; index++) {
-                let ele = document.createElement('td')
-                let text3 = document.createTextNode(`${tabdata[index]}`)
-                ele.appendChild(text3)
-                row.appendChild(ele)
-            }
-            
-            tableau.appendChild(row)
-        });
+        datAll(v.Pages)
     }
     
     }
 
-    function dat10(){
+    function dat10(Pages){
         tbo = document.getElementById('tbody')
         tbo.replaceChildren()
         actualPage = 'data10'
-        Pages = 0
+        
         data10[Pages].forEach(element => {
             let tabdata = [`${element.name}`,`${element.appearance.gender}`,`${element.appearance.race}`,`${element.appearance.weight[0]}`,`${element.appearance.height[0]}`,`${element.biography.placeOfBirth}`,`${element.biography.alignment}`,`${element.powerstats[0]}`]
             let row = document.createElement('tr')
@@ -201,9 +162,8 @@ suivant.onclick = function (){
             tbo.appendChild(row)
         });
     }
-    function dat20(){
-       
-        Pages = 0
+    function dat20(Pages){
+       console.log(data20)
         tbo = document.getElementById('tbody')
         tbo.replaceChildren()
         data20[Pages].forEach(element => {
@@ -219,9 +179,9 @@ suivant.onclick = function (){
             tbo.appendChild(row)
         });
     }
-    function dat50(){
+    function dat50(Pages){
        
-        Pages = 0
+        
         tbo = document.getElementById('tbody')
         tbo.replaceChildren()
         data50[Pages].forEach(element => {
@@ -237,9 +197,9 @@ suivant.onclick = function (){
             tbo.appendChild(row)
         });
     }
-    function dat100(){
+    function dat100(Pages){
         
-        Pages = 0
+       
         tbo = document.getElementById('tbody')
         tbo.replaceChildren()
         data100[Pages].forEach(element => {
@@ -256,7 +216,7 @@ suivant.onclick = function (){
         });
     }
     function datAll(){
-        Pages = 0
+        
         
         tbo = document.getElementById('tbody')
         tbo.replaceChildren()
@@ -278,18 +238,23 @@ function datX(){
     const listee = document.getElementById('listee')
     val = listee.options[listee.selectedIndex].value
     if (val == 1) {
+        v.Pages = 0
         actualPage = 'data10'
-        dat10()
+        dat10(0)
     } else if (val == 2) {
+        v.Pages = 0
         actualPage = 'data20'
-        dat20()
+        dat20(0)
     } else if (val == 3) {
+        v.Pages = 0
         actualPage = 'data50'
-        dat50()
+        dat50(0)
     } else if (val == 4) {
+        v.Pages = 0
         actualPage = 'data100'
-        dat100()
+        dat100(0)
     } else if (val == 5) {
+        v.Pages = 0
         actualPage = 'dataAll'
         datAll()
     }
